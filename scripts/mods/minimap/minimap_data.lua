@@ -12,6 +12,32 @@ return {
                 default_value = true,
             },
             {
+                setting_id = "screen_alignment",
+                type = "group",
+                sub_widgets = {
+                    {
+                        setting_id = "vertical_alignment",
+                        type = "dropdown",
+                        default_value = "bottom",
+                        options = {
+                            {text = "center",   value = "center"},
+                            {text = "top",   value = "top"},
+                            {text = "bottom",   value = "bottom"},
+                          },
+                    },
+                    {
+                        setting_id = "horizontal_alignment",
+                        type = "dropdown",
+                        default_value = "center",
+                        options = {
+                            {text = "center",   value = "center"},
+                            {text = "left",   value = "left"},
+                            {text = "right",   value = "right"},
+                          },
+                    },
+                }
+            },
+            {
                 setting_id = "icon_visibility",
                 type = "group",
                 sub_widgets = {

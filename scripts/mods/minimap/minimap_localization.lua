@@ -19,6 +19,46 @@ return {
         ["zh-cn"] = "图标可见性",
         ru = "Видимость значков",
     },
+    screen_alignment = {
+        en = "Alignment in Screen",
+        de = "Ausrichtung im Bildschirm",
+        ru = "Выравнивание на экране",
+    },
+    vertical_alignment = {
+        en = "Vertical alignment",
+        de = "Vertikale Ausrichtung",
+        ru = "Вертикальное расположение",
+    },
+    horizontal_alignment = {
+        en = "Horizontal alignment",
+        de = "Horizontale Ausrichtung",
+        ru = "Горизонтальное расположение",
+    },
+    center = {
+        en = "Center",
+        de = "Mitte",
+        ru = "Центр",
+    },
+    left = {
+        en = "Left",
+        de = "Links",
+        ru = "Слева",
+    },
+    right = {
+        en = "Right",
+        de = "Rechts",
+        ru = "Справа",
+    },
+    top = {
+        en = "Top",
+        de = "Oben",
+        ru = "Вверху",
+    },
+    bottom = {
+        en = "Bottom",
+        de = "Unten",
+        ru = "Внизу",
+    },
     location_attention_vis = {
         en = "Attention Pings",
         ["zh-cn"] = "注意标记",

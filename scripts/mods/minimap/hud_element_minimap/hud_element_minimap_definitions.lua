@@ -12,7 +12,7 @@ local scenegraph_definition = {
         vertical_alignment = "center",
         horizontal_alignment = "left",
         size = settings.size,
-        position = { 50, -100, 10 },
+        position = settings.position,
     },
 }
 
