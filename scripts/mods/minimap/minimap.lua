@@ -1,6 +1,7 @@
 local mod = get_mod("minimap")
 
 mod.settings = {}
+mod.settings.screen_alignment = {}
 mod.settings.icon_vis = {}
 
 local hud_elements = {
@@ -54,6 +55,8 @@ end
 
 local function collect_settings()
     mod.settings["display_class_icon"] = mod:get("display_class_icon")
+    mod.settings.screen_alignment["vertical_alignment"] = mod:get("vertical_alignment")
+    mod.settings.screen_alignment["horizontal_alignment"] = mod:get("horizontal_alignment")
 
     mod.settings.icon_vis["location_attention"] = mod:get("location_attention_vis")
     mod.settings.icon_vis["location_ping"] = mod:get("location_ping_vis")
