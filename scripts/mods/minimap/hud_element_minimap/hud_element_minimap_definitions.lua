@@ -9,8 +9,8 @@ local scenegraph_definition = {
     screen = UIWorkspaceSettings.screen,
     minimap = {
         parent = "screen",
-        vertical_alignment = "center",
-        horizontal_alignment = "left",
+        vertical_alignment = "bottom",
+        horizontal_alignment = "center",
         size = settings.size,
         position = settings.position,
     },
