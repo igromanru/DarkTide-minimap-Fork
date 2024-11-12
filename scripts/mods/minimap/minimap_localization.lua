@@ -19,17 +19,15 @@ return {
         ["zh-cn"] = "图标可见性",
         ru = "Видимость значков",
     },
-    screen_alignment = {
-        en = "Alignment in Screen",
-        de = "Ausrichtung im Bildschirm",
-        ru = "Выравнивание на экране",
+    minimap_style_settings = {
+        en = "Style Settings",
     },
-    vertical_alignment = {
+    minimap_vertical_alignment = {
         en = "Vertical alignment",
         de = "Vertikale Ausrichtung",
         ru = "Вертикальное расположение",
     },
-    horizontal_alignment = {
+    minimap_horizontal_alignment = {
         en = "Horizontal alignment",
         de = "Horizontale Ausrichtung",
         ru = "Горизонтальное расположение",
@@ -58,6 +56,12 @@ return {
         en = "Bottom",
         de = "Unten",
         ru = "Внизу",
+    },
+    minimap_offset_x = {
+        en = "X Offset"
+    },
+    minimap_offset_y = {
+        en = "Y Offset"
     },
     location_attention_vis = {
         en = "Attention Pings",

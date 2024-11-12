@@ -12,11 +12,21 @@ return {
                 default_value = true,
             },
             {
-                setting_id = "screen_alignment",
+                setting_id = "minimap_style_settings",
                 type = "group",
                 sub_widgets = {
                     {
-                        setting_id = "vertical_alignment",
+						setting_id = "minimap_horizontal_alignment",
+						type = "dropdown",
+						default_value = "center",
+						options = {
+							{text = "center",   value = "center"},
+							{text = "left",   value = "left"},
+							{text = "right",   value = "right"},
+						  },
+					},
+					{
+                        setting_id = "minimap_vertical_alignment",
                         type = "dropdown",
                         default_value = "bottom",
                         options = {
@@ -26,15 +36,17 @@ return {
                           },
                     },
                     {
-                        setting_id = "horizontal_alignment",
-                        type = "dropdown",
-                        default_value = "center",
-                        options = {
-                            {text = "center",   value = "center"},
-                            {text = "left",   value = "left"},
-                            {text = "right",   value = "right"},
-                          },
-                    },
+						setting_id = "minimap_offset_x",
+						type = "numeric",
+						default_value = 0,
+						range = {-200, 200},
+					},
+					{
+						setting_id = "minimap_offset_y",
+						type = "numeric",
+						default_value = -30,
+						range = {-200, 200},
+					},
                 }
             },
             {

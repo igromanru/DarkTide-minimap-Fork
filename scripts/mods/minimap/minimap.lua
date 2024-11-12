@@ -34,6 +34,23 @@ mod:hook("UIHud", "init", function(func, self, elements, visibility_groups, para
     return func(self, elements, visibility_groups, params)
 end)
 
+---@param elements any[]
+---@return HudElementMinimap?
+local function get_hud_minimap_element(elements)
+	if not elements or table.is_empty(elements) then return nil end
+
+	return elements[hud_elements[1].class_name]
+end
+
+local function update_minimap_style_settings(hud)
+	if not hud or not hud._elements then return end
+
+	local minimap = get_hud_minimap_element(hud._elements)
+	if minimap then
+		minimap:set_scenegraph_position("minimap", mod:get("minimap_offset_x"), mod:get("minimap_offset_y"), 0, mod:get("minimap_horizontal_alignment"), mod:get("minimap_vertical_alignment"))
+	end
+end
+
 -- Taken from Fracticality
 local function recreate_hud()
     local ui_manager = Managers.ui
@@ -49,14 +66,14 @@ local function recreate_hud()
 
             hud:destroy()
             ui_manager:create_player_hud(peer_id, local_player_id, elements, visibility_groups)
+
+            update_minimap_style_settings(ui_manager._hud)
         end
     end
 end
 
 local function collect_settings()
     mod.settings["display_class_icon"] = mod:get("display_class_icon")
-    mod.settings.screen_alignment["vertical_alignment"] = mod:get("vertical_alignment")
-    mod.settings.screen_alignment["horizontal_alignment"] = mod:get("horizontal_alignment")
 
     mod.settings.icon_vis["location_attention"] = mod:get("location_attention_vis")
     mod.settings.icon_vis["location_ping"] = mod:get("location_ping_vis")
