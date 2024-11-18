@@ -1,0 +1,4 @@
+[submodule "scripts/mods/minimap/ModUtils"]
+	path = scripts/mods/minimap/ModUtils
+	url = https://github.com/igromanru/DarkTide-ModUtils.git
+	branch = master

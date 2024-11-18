@@ -1,5 +1,6 @@
 local mod = get_mod("minimap")
 
+local ModUtils = mod:io_dofile("minimap/scripts/mods/minimap/ModUtils/ModUtils") ---@type ModUtils
 local UIWidget = require("scripts/managers/ui/ui_widget")
 local ScriptCamera = require("scripts/foundation/utilities/script_camera")
 
@@ -70,10 +71,32 @@ HudElementMinimap._collect_markers = function(self)
     return markers_data
 end
 
-HudElementMinimap._get_marker_azimuth_range = function (self, marker)
-    local marker_position = marker.position and marker.position:unbox()
+HudElementMinimap._collect_enemies = function(self)
+    local enemies_data = {}
 
-    if marker_position then
+    if mod:get("unit_threat_vis") then
+        local enemy_units = ModUtils.get_enemy_units()
+        if not enemy_units then return enemies_data end
+
+        for _, enemy_unit in ipairs(enemy_units) do
+            if ModUtils.is_threat_enemy_unit(enemy_unit) then
+                local azimuth, range = self:_get_enemy_azimuth_range(enemy_unit)
+                table.insert(enemies_data, {
+                    azimuth = azimuth,
+                    range = range,
+                    name = "enemy",
+                    marker = {
+                        unit = enemy_unit
+                    }
+                })
+            end
+        end
+    end
+    return enemies_data
+end
+
+HudElementMinimap._get_azimuth_range = function (self, position)
+    if position then
         local camera = self._parent:player_camera()
 
         if not camera then
@@ -82,7 +105,7 @@ HudElementMinimap._get_marker_azimuth_range = function (self, marker)
 
         local camera_position = ScriptCamera.position(camera)
         local camera_forward = Quaternion.forward(ScriptCamera.rotation(camera))
-        local diff_vector = marker_position - camera_position
+        local diff_vector = position - camera_position
         diff_vector.z = 0
         local azimuth = Vector3.flat_angle(camera_forward, diff_vector)
         local range = Vector3.length(diff_vector)
@@ -91,6 +114,14 @@ HudElementMinimap._get_marker_azimuth_range = function (self, marker)
     end
 
     return 0, 0
+end
+
+HudElementMinimap._get_enemy_azimuth_range = function (self, enemy_unit)
+    return self:_get_azimuth_range(Unit.world_position(enemy_unit, 1))
+end
+
+HudElementMinimap._get_marker_azimuth_range = function (self, marker)
+    return self:_get_azimuth_range(marker.position and marker.position:unbox())
 end
 
 local function get_hfov(vfov)
@@ -169,6 +200,10 @@ HudElementMinimap._draw_widgets = function(self, dt, t, input_service, ui_render
         self:_draw_widget_by_marker(marker_info, ui_renderer)
     end
 
+    -- local enemies_data = self:_collect_enemies()
+    -- for _, enemy_info in ipairs(enemies_data) do
+    --     self:_draw_widget_by_marker(enemy_info, ui_renderer)
+    -- end
 end
 
 return HudElementMinimap
